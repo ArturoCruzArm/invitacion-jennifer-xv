@@ -3,12 +3,37 @@
 // Anime-style Web Invitation
 // ============================================
 
-document.addEventListener('DOMContentLoaded', () => {
-    initParticles();
-    initPetals();
-    initCountdown();
-    initScrollReveal();
-    initSparkleTrail();
+const audio = document.getElementById('bgMusic');
+let isPlaying = false;
+
+// ---- Splash Screen / Open Invitation ----
+document.getElementById('openInvitation').addEventListener('click', () => {
+    const splash = document.getElementById('splashScreen');
+    const mainContent = document.getElementById('mainContent');
+
+    // Hide splash
+    splash.classList.add('hidden');
+
+    // Show main content
+    mainContent.classList.add('visible');
+
+    // Start music
+    audio.volume = 0.5;
+    audio.play().then(() => {
+        isPlaying = true;
+        document.getElementById('musicToggle').classList.add('playing');
+    }).catch(() => {
+        // Autoplay blocked, user can use toggle
+    });
+
+    // Initialize all effects after content is visible
+    setTimeout(() => {
+        initParticles();
+        initPetals();
+        initCountdown();
+        initScrollReveal();
+        initSparkleTrail();
+    }, 100);
 });
 
 // ---- Floating Particles ----
@@ -136,14 +161,53 @@ function initSparkleTrail() {
     }
 }
 
-// ---- Music Toggle (placeholder) ----
-const musicToggle = document.getElementById('musicToggle');
-let isPlaying = false;
+// ---- Music Toggle ----
+document.getElementById('musicToggle').addEventListener('click', () => {
+    if (isPlaying) {
+        audio.pause();
+        isPlaying = false;
+    } else {
+        audio.play();
+        isPlaying = true;
+    }
+    document.getElementById('musicToggle').classList.toggle('playing', isPlaying);
+});
 
-musicToggle.addEventListener('click', () => {
-    isPlaying = !isPlaying;
-    musicToggle.classList.toggle('playing', isPlaying);
-    // Audio can be added here:
-    // const audio = document.getElementById('bgMusic');
-    // isPlaying ? audio.play() : audio.pause();
+// ---- RSVP Form - WhatsApp ----
+function buildWhatsAppMessage() {
+    const name = document.getElementById('guestName').value.trim();
+    const numGuests = document.getElementById('numGuests').value;
+    const attendance = document.getElementById('attendance').value;
+    const message = document.getElementById('message').value.trim();
+
+    if (!name || !numGuests || !attendance) {
+        alert('Por favor llena todos los campos requeridos.');
+        return null;
+    }
+
+    const attendText = attendance === 'si' ? 'Confirmo mi asistencia' : 'No podré asistir';
+
+    let text = `*XV Años - Jennifer Guadalupe*\n\n`;
+    text += `*Nombre:* ${name}\n`;
+    text += `*Invitados:* ${numGuests}\n`;
+    text += `*Asistencia:* ${attendText}\n`;
+    if (message) {
+        text += `*Mensaje:* ${message}\n`;
+    }
+
+    return encodeURIComponent(text);
+}
+
+document.getElementById('sendSergio').addEventListener('click', () => {
+    const msg = buildWhatsAppMessage();
+    if (msg) {
+        window.open(`https://wa.me/524773264046?text=${msg}`, '_blank');
+    }
+});
+
+document.getElementById('sendSandra').addEventListener('click', () => {
+    const msg = buildWhatsAppMessage();
+    if (msg) {
+        window.open(`https://wa.me/524775254936?text=${msg}`, '_blank');
+    }
 });
