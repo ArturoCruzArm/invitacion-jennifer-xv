@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XV Años - Jennifer Guadalupe</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Particles background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Sparkle cursor trail -->
+    <div class="sparkle-container" id="sparkleContainer"></div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-overlay"></div>
+        <div class="anime-petals" id="petals"></div>
+        <div class="hero-content anime-fade-in">
+            <div class="tiara-icon">&#10022;</div>
+            <p class="subtitle anime-slide-up">Mis</p>
+            <h1 class="title anime-glow">XV Años</h1>
+            <div class="divider anime-expand"></div>
+            <h2 class="name anime-slide-up-delay">Jennifer Guadalupe</h2>
+            <p class="name-last anime-slide-up-delay2">Hernández Martínez</p>
+            <div class="scroll-indicator anime-bounce">
+                <span>&#9660;</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Invitation Message -->
+    <section class="section invitation" id="invitation">
+        <div class="anime-reveal">
+            <div class="ornament">&#10045;</div>
+            <p class="invite-text">
+                Con la bendición de Dios y con gran alegría en nuestros corazones,
+                tenemos el honor de invitarte a celebrar los
+            </p>
+            <h2 class="highlight-text anime-glow">XV Años</h2>
+            <p class="invite-text">de nuestra querida</p>
+            <h3 class="featured-name">Jennifer Guadalupe</h3>
+            <div class="ornament">&#10045;</div>
+        </div>
+    </section>
+
+    <!-- Countdown -->
+    <section class="section countdown-section" id="countdown">
+        <h2 class="section-title anime-reveal">Faltan</h2>
+        <div class="countdown" id="countdown-timer">
+            <div class="countdown-item anime-pop" style="--delay: 0.1s">
+                <span class="countdown-number" id="days">000</span>
+                <span class="countdown-label">Días</span>
+            </div>
+            <div class="countdown-item anime-pop" style="--delay: 0.2s">
+                <span class="countdown-number" id="hours">00</span>
+                <span class="countdown-label">Horas</span>
+            </div>
+            <div class="countdown-item anime-pop" style="--delay: 0.3s">
+                <span class="countdown-number" id="minutes">00</span>
+                <span class="countdown-label">Minutos</span>
+            </div>
+            <div class="countdown-item anime-pop" style="--delay: 0.4s">
+                <span class="countdown-number" id="seconds">00</span>
+                <span class="countdown-label">Segundos</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ceremony -->
+    <section class="section ceremony" id="ceremony">
+        <div class="event-card anime-reveal">
+            <div class="card-glow"></div>
+            <div class="event-icon">&#9962;</div>
+            <h2 class="section-title">Ceremonia Religiosa</h2>
+            <div class="event-details">
+                <p class="event-venue">Templo Virgen San Juan de los Lagos</p>
+                <p class="event-location">Jardines del Moral, León, Gto.</p>
+                <div class="event-time-badge">
+                    <span class="time">5:00 PM</span>
+                </div>
+                <p class="event-date">27 de Junio de 2026</p>
+            </div>
+            <a href="https://maps.google.com/maps?q=Templo+Virgen+San+Juan+de+los+Lagos+Jardines+del+Moral+Leon" target="_blank" class="btn-map">
+                <span>Ver Ubicación</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Reception -->
+    <section class="section reception" id="reception">
+        <div class="event-card anime-reveal">
+            <div class="card-glow"></div>
+            <div class="event-icon">&#127878;</div>
+            <h2 class="section-title">Recepción</h2>
+            <div class="event-details">
+                <p class="event-venue">Salón La Finca</p>
+                <p class="event-location">Etna 327, Fracciones de San Juan Bautista, León</p>
+                <div class="event-time-badge">
+                    <span class="time">Después de la misa</span>
+                </div>
+            </div>
+            <a href="https://maps.google.com/maps/search/Sal%C3%B3n%20de%20Eventos%20La%20Finca/@21.070209503173828,-101.61920166015625,17z?hl=es" target="_blank" class="btn-map">
+                <span>Ver Ubicación</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Dress Code -->
+    <section class="section dresscode" id="dresscode">
+        <div class="anime-reveal">
+            <h2 class="section-title">Código de Vestimenta</h2>
+            <p class="dresscode-text">Formal / Elegante</p>
+            <div class="dress-illustration">
+                <div class="dress-anime">
+                    <svg viewBox="0 0 200 300" class="dress-svg">
+                        <defs>
+                            <linearGradient id="dressGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:#8B0000;stop-opacity:1" />
+                                <stop offset="50%" style="stop-color:#6B0000;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#4A0000;stop-opacity:1" />
+                            </linearGradient>
+                            <filter id="glow">
+                                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        <!-- Dress body -->
+                        <path d="M100,40 L80,60 L60,80 L40,160 L30,280 L170,280 L160,160 L140,80 L120,60 Z"
+                              fill="url(#dressGrad)" stroke="#FF6B6B" stroke-width="0.5" filter="url(#glow)"/>
+                        <!-- Bodice details -->
+                        <path d="M85,50 Q100,70 115,50" fill="none" stroke="#FF8888" stroke-width="1" opacity="0.6"/>
+                        <path d="M80,60 Q100,80 120,60" fill="none" stroke="#FF8888" stroke-width="1" opacity="0.4"/>
+                        <!-- Waist -->
+                        <ellipse cx="100" cy="100" rx="30" ry="5" fill="none" stroke="#FFD700" stroke-width="1.5" opacity="0.8"/>
+                        <!-- Skirt folds -->
+                        <path d="M60,120 Q80,200 50,280" fill="none" stroke="#FF6B6B" stroke-width="0.8" opacity="0.3"/>
+                        <path d="M80,110 Q90,200 70,280" fill="none" stroke="#FF6B6B" stroke-width="0.8" opacity="0.3"/>
+                        <path d="M120,110 Q110,200 130,280" fill="none" stroke="#FF6B6B" stroke-width="0.8" opacity="0.3"/>
+                        <path d="M140,120 Q120,200 150,280" fill="none" stroke="#FF6B6B" stroke-width="0.8" opacity="0.3"/>
+                        <!-- Sparkles -->
+                        <circle cx="70" cy="150" r="1.5" fill="#FFD700" opacity="0.8" class="sparkle-dot"/>
+                        <circle cx="130" cy="170" r="1.5" fill="#FFD700" opacity="0.6" class="sparkle-dot"/>
+                        <circle cx="90" cy="200" r="1" fill="#FFD700" opacity="0.7" class="sparkle-dot"/>
+                        <circle cx="110" cy="230" r="1.5" fill="#FFD700" opacity="0.5" class="sparkle-dot"/>
+                        <circle cx="60" cy="250" r="1" fill="#FFD700" opacity="0.8" class="sparkle-dot"/>
+                        <circle cx="140" cy="240" r="1" fill="#FFD700" opacity="0.6" class="sparkle-dot"/>
+                    </svg>
+                </div>
+            </div>
+            <p class="color-note">Color de la quinceañera: <strong>Rojo Oscuro</strong></p>
+        </div>
+    </section>
+
+    <!-- RSVP -->
+    <section class="section rsvp" id="rsvp">
+        <div class="anime-reveal">
+            <h2 class="section-title">Confirma tu Asistencia</h2>
+            <p class="rsvp-text">Tu presencia es el mejor regalo</p>
+            <a href="https://wa.me/+524771234567?text=Confirmo%20mi%20asistencia%20a%20los%20XV%20de%20Jennifer" target="_blank" class="btn-confirm anime-pulse">
+                Confirmar Asistencia
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-ornament">&#10022; &#10022; &#10022;</div>
+        <p>Te esperamos con mucho cariño</p>
+        <p class="footer-name">Jennifer Guadalupe</p>
+        <p class="footer-date">27 . 06 . 2026</p>
+    </footer>
+
+    <!-- Background Music Toggle -->
+    <button class="music-toggle" id="musicToggle" aria-label="Toggle music">
+        <span class="music-icon">&#9835;</span>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
