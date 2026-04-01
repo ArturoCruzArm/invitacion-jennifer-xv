@@ -182,14 +182,18 @@
                 <h2 class="section-title">Confirma tu Asistencia</h2>
                 <p class="rsvp-text">Tu presencia es el mejor regalo</p>
 
+                <div id="personalizedWelcome" style="display:none;text-align:center;margin-bottom:20px;padding:16px;background:rgba(255,255,255,0.07);border-radius:12px;">
+                    <p id="guestWelcomeText" style="font-size:1.1rem;margin-bottom:6px;"></p>
+                    <p id="guestPassesText" style="opacity:.75;font-size:.9rem;"></p>
+                </div>
                 <form class="rsvp-form" id="rsvpForm">
                     <div class="form-group">
-                        <label for="guestName">Nombre completo</label>
-                        <input type="text" id="guestName" name="guestName" placeholder="Tu nombre" required>
+                        <label for="name">Nombre completo</label>
+                        <input type="text" id="name" name="name" placeholder="Tu nombre" required>
                     </div>
                     <div class="form-group">
-                        <label for="numGuests">Número de invitados</label>
-                        <select id="numGuests" name="numGuests" required>
+                        <label for="guests">Número de personas</label>
+                        <select id="guests" name="guests" required>
                             <option value="">Selecciona</option>
                             <option value="1">1 persona</option>
                             <option value="2">2 personas</option>
@@ -210,19 +214,13 @@
                         <label for="message">Mensaje para Jennifer (opcional)</label>
                         <textarea id="message" name="message" placeholder="Escribe un mensaje..." rows="3"></textarea>
                     </div>
-
-                    <p class="rsvp-contact-label">Enviar confirmación a:</p>
-                    <div class="rsvp-buttons">
-                        <button type="button" class="btn-confirm btn-whatsapp anime-pulse" id="sendSergio">
-                            <span class="wa-icon">&#9742;</span>
-                            Sr. Sergio Hernández
-                        </button>
-                        <button type="button" class="btn-confirm btn-whatsapp anime-pulse" id="sendSandra">
-                            <span class="wa-icon">&#9742;</span>
-                            Sra. Sandra
-                        </button>
+                    <div style="text-align:center;">
+                        <button type="submit" class="btn-confirm anime-pulse">Enviar Confirmación</button>
                     </div>
                 </form>
+                <div id="successMessage" style="display:none;text-align:center;padding:20px;background:rgba(16,185,129,.15);border:1px solid #10b981;border-radius:12px;color:#6ee7b7;margin-top:16px;">
+                    ✓ ¡Gracias! Tu confirmación ha sido registrada.
+                </div>
             </div>
         </section>
 
@@ -242,5 +240,6 @@
 
     <script src="script.js"></script>
     <script src="visitas.js?v=1"></script>
+    <script src="js/rsvp-guest.js"></script>
 </body>
 </html>
