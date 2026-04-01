@@ -219,12 +219,7 @@
                     </div>
                 </form>
                 <div id="successMessage" style="display:none;text-align:center;padding:20px;background:rgba(16,185,129,.15);border:1px solid #10b981;border-radius:12px;color:#6ee7b7;margin-top:16px;">
-                    <p style="margin-bottom:14px;">✓ ¡Gracias! Tu confirmación ha sido registrada.</p>
-                    <p style="margin-bottom:14px;opacity:.8;font-size:.9rem;">Avisa también por WhatsApp:</p>
-                    <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;">
-                        <a id="waBtnSergio" href="#" target="_blank" style="display:inline-flex;align-items:center;gap:6px;background:#25d366;color:#fff;padding:10px 22px;border-radius:25px;text-decoration:none;font-weight:bold;">💬 Sergio</a>
-                        <a id="waBtnSandra" href="#" target="_blank" style="display:inline-flex;align-items:center;gap:6px;background:#25d366;color:#fff;padding:10px 22px;border-radius:25px;text-decoration:none;font-weight:bold;">💬 Sandra</a>
-                    </div>
+                    ✓ ¡Gracias! Tu confirmación ha sido registrada.
                 </div>
             </div>
         </section>
@@ -279,13 +274,10 @@
             const txt = asiste
                 ? `Hola, confirmo mi asistencia a ${NOMBRE_EVENTO}.\nNombre: ${nombre}\nPersonas: ${pases}${mensaje?'\nMensaje: '+mensaje:''}`
                 : `Hola, lamentablemente no podré asistir a ${NOMBRE_EVENTO}.\nNombre: ${nombre}${mensaje?'\nMensaje: '+mensaje:''}`;
-            const encoded = encodeURIComponent(txt);
             const succ = document.getElementById('successMessage');
             if (succ) succ.style.display='block';
-            const btnS = document.getElementById('waBtnSergio');
-            const btnSa = document.getElementById('waBtnSandra');
-            if (btnS) btnS.href=`https://wa.me/5214773264046?text=${encoded}`;
-            if (btnSa) btnSa.href=`https://wa.me/5214775254936?text=${encoded}`;
+            [['5214773264046'],['5214775254936']].forEach(([num], i) =>
+                setTimeout(() => window.open(`https://wa.me/${num}?text=${encodeURIComponent(txt)}`, '_blank'), 400 + i * 600));
         });
     }
     if (document.readyState==='loading') document.addEventListener('DOMContentLoaded',attachHandler);
