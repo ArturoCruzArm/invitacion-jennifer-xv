@@ -190,8 +190,7 @@
             const pases = parseInt(document.getElementById('guests')?.value || '1');
             const asisteSel = document.getElementById('attendance')?.value;
             const mensaje = document.getElementById('message')?.value || '';
-            const allNames = Array.from(document.querySelectorAll('.nombre-asistente')).map(inp => inp.value.trim());
-            const nombresAcomp = allNames.slice(1); // sin el titular
+            const nombresAcomp = Array.from(document.querySelectorAll('.nombre-asistente')).map(inp => inp.value.trim());
 
             if (!nombre || !asisteSel) return;
             const asiste = asisteSel === 'si';
