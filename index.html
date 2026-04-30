@@ -194,15 +194,13 @@
                         <input type="text" id="name" name="name" placeholder="Tu nombre" required>
                     </div>
                     <div class="form-group">
-                        <label for="guests">Número de personas</label>
+                        <label for="guests">Numero de personas (incluyendote)</label>
                         <input type="number" id="guests" name="guests" min="1" max="20" value="1" required
                                style="width:100%;padding:12px;border:1px solid rgba(255,255,255,0.2);border-radius:8px;background:rgba(255,255,255,0.08);color:inherit;font-size:1rem;">
-                        <small style="opacity:.6;display:block;margin-top:4px;">Incluye a todos los que asistirán contigo</small>
                     </div>
                     <div class="form-group" id="nombresGroup" style="display:none;">
-                        <label>Nombres de los asistentes</label>
+                        <label>Nombres de tus acompanantes</label>
                         <div id="nombresContainer"></div>
-                        <small style="opacity:.6;display:block;margin-top:4px;">Escribe el nombre de cada persona que asistirá</small>
                     </div>
                     <div class="form-group">
                         <label for="attendance">¿Asistirás?</label>
@@ -265,13 +263,13 @@
         const group = document.getElementById('nombresGroup');
         if (!container || !group) return;
         container.innerHTML = '';
-        const numAcomp = Math.max(0, count - 1); // sin contar al titular
+        const numAcomp = Math.max(0, count - 1);
         group.style.display = numAcomp > 0 ? 'block' : 'none';
         for (let i = 0; i < numAcomp; i++) {
             const inp = document.createElement('input');
             inp.type = 'text';
             inp.className = 'nombre-asistente';
-            inp.placeholder = 'Nombre acompanante ' + (i + 1);
+            inp.placeholder = 'Acompanante ' + (i + 1);
             inp.style.cssText = 'width:100%;padding:10px;margin-bottom:6px;border:1px solid rgba(255,255,255,0.2);border-radius:8px;background:rgba(255,255,255,0.08);color:inherit;font-size:.95rem;';
             container.appendChild(inp);
         }

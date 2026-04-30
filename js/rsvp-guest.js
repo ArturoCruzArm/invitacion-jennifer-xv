@@ -68,22 +68,15 @@
         const group = document.getElementById('nombresGroup');
         if (!container || !group) return;
         container.innerHTML = '';
-        if (count < 1) count = 1;
-        group.style.display = 'block';
-        // El primer campo es el titular (pre-llenado, readonly)
-        for (let i = 0; i < count; i++) {
+        const numAcomp = Math.max(0, count - 1);
+        group.style.display = numAcomp > 0 ? 'block' : 'none';
+        for (let i = 0; i < numAcomp; i++) {
             const inp = document.createElement('input');
             inp.type = 'text';
             inp.className = 'nombre-asistente';
-            if (i === 0) {
-                inp.value = guestData.nombre;
-                inp.readOnly = true;
-                inp.style.cssText = 'width:100%;padding:10px;margin-bottom:6px;border:1px solid rgba(255,255,255,0.1);border-radius:8px;background:rgba(255,255,255,0.04);color:inherit;font-size:.95rem;opacity:.7;';
-            } else {
-                inp.value = existing[i - 1] || '';
-                inp.placeholder = `Acompanante ${i}`;
-                inp.style.cssText = 'width:100%;padding:10px;margin-bottom:6px;border:1px solid rgba(255,255,255,0.2);border-radius:8px;background:rgba(255,255,255,0.08);color:inherit;font-size:.95rem;';
-            }
+            inp.value = existing[i] || '';
+            inp.placeholder = 'Acompanante ' + (i + 1);
+            inp.style.cssText = 'width:100%;padding:10px;margin-bottom:6px;border:1px solid rgba(255,255,255,0.2);border-radius:8px;background:rgba(255,255,255,0.08);color:inherit;font-size:.95rem;';
             container.appendChild(inp);
         }
     }
