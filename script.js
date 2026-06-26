@@ -33,6 +33,8 @@ document.getElementById('openInvitation').addEventListener('click', () => {
         initCountdown();
         initScrollReveal();
         initSparkleTrail();
+        initPhotoHeroParallax();
+        initLightbox();
     }, 100);
 });
 
@@ -172,6 +174,124 @@ document.getElementById('musicToggle').addEventListener('click', () => {
     }
     document.getElementById('musicToggle').classList.toggle('playing', isPlaying);
 });
+
+// ---- Photo Hero Parallax ----
+function initPhotoHeroParallax() {
+    const hero = document.getElementById('photoHero');
+    if (!hero) return;
+    const img = hero.querySelector('.photo-hero-img');
+    window.addEventListener('scroll', () => {
+        const rect = hero.getBoundingClientRect();
+        if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+        const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+        const y = (progress - 0.5) * 60;
+        img.style.transform = `translateY(${y}px) scale(${1 + progress * 0.08})`;
+    }, { passive: true });
+}
+
+// ---- Lightbox Gallery (Premium) ----
+function initLightbox() {
+    const showcaseCards = document.querySelectorAll('.showcase-card');
+    const mosaicItems = document.querySelectorAll('.mosaic-item');
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightboxImg');
+    const lbCounter = document.getElementById('lightboxCounter');
+    const lbDots = document.getElementById('lightboxDots');
+
+    // Collect all gallery images in order
+    const allItems = [...showcaseCards, ...mosaicItems];
+    const imgs = allItems.map(el => el.dataset.img);
+    let idx = 0;
+
+    // Build dots
+    imgs.forEach((_, i) => {
+        const dot = document.createElement('div');
+        dot.className = 'lightbox-dot';
+        dot.addEventListener('click', () => show(i));
+        lbDots.appendChild(dot);
+    });
+    const dots = lbDots.querySelectorAll('.lightbox-dot');
+
+    function show(i, animate) {
+        const newIdx = (i + imgs.length) % imgs.length;
+        if (animate !== false && newIdx !== idx) {
+            lbImg.classList.add('fade-out');
+            setTimeout(() => {
+                idx = newIdx;
+                lbImg.src = imgs[idx];
+                lbImg.classList.remove('fade-out');
+                updateDots();
+            }, 250);
+        } else {
+            idx = newIdx;
+            lbImg.src = imgs[idx];
+            updateDots();
+        }
+        lbCounter.textContent = (newIdx + 1) + ' / ' + imgs.length;
+    }
+
+    function updateDots() {
+        dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+    }
+
+    function open(i) {
+        show(i, false);
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    // Attach click to all gallery items
+    allItems.forEach((item, i) => {
+        item.addEventListener('click', () => open(i));
+    });
+
+    function close() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    document.getElementById('lightboxClose').addEventListener('click', close);
+    document.getElementById('lightboxPrev').addEventListener('click', () => show(idx - 1));
+    document.getElementById('lightboxNext').addEventListener('click', () => show(idx + 1));
+
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox || e.target.classList.contains('lightbox-stage')) close();
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('active')) return;
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowLeft') show(idx - 1);
+        if (e.key === 'ArrowRight') show(idx + 1);
+    });
+
+    // Touch swipe with velocity
+    let touchStartX = 0, touchStartTime = 0;
+    lightbox.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+        touchStartTime = Date.now();
+    }, { passive: true });
+    lightbox.addEventListener('touchend', (e) => {
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        const dt = Date.now() - touchStartTime;
+        if (Math.abs(dx) > 40 || (Math.abs(dx) > 20 && dt < 300)) {
+            dx > 0 ? show(idx - 1) : show(idx + 1);
+        }
+    });
+
+    // Preload adjacent images
+    function preload(i) {
+        const next = (i + 1) % imgs.length;
+        const prev = (i - 1 + imgs.length) % imgs.length;
+        [next, prev].forEach(j => {
+            const img = new Image();
+            img.src = imgs[j];
+        });
+    }
+    const origShow = show;
+    // Add preload after show
+    const _show = show;
+}
 
 // ---- RSVP Form - WhatsApp ----
 function buildWhatsAppMessage() {
