@@ -487,16 +487,26 @@
 })();
 </script>
 <script>
-// YouTube IFrame API – max quality
+// YouTube IFrame API – max quality + pause bg music
 var tag=document.createElement('script');
 tag.src='https://www.youtube.com/iframe_api';
 document.head.appendChild(tag);
 function onYouTubeIframeAPIReady(){
+    var bgMusic=document.getElementById('bgMusic');
     new YT.Player('ytPlayer',{
         videoId:'MFHeO4HNzeE',
         playerVars:{rel:0,modestbranding:1,playsinline:1,cc_load_policy:0,
                     vq:'hd1080',origin:location.origin},
-        events:{onReady:function(e){e.target.setPlaybackQuality('hd1080');}}
+        events:{
+            onReady:function(e){e.target.setPlaybackQuality('hd1080');},
+            onStateChange:function(e){
+                if(e.data===YT.PlayerState.PLAYING){
+                    if(bgMusic && !bgMusic.paused) bgMusic.pause();
+                } else if(e.data===YT.PlayerState.PAUSED || e.data===YT.PlayerState.ENDED){
+                    if(bgMusic && bgMusic.paused) bgMusic.play();
+                }
+            }
+        }
     });
 }
 </script>
