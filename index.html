@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>XV Años - Jennifer Guadalupe</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="stylesheet" href="styles.css?v=3">
+    <link rel="stylesheet" href="styles.css?v=4">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -242,6 +242,25 @@
             <div class="lightbox-dots" id="lightboxDots"></div>
         </div>
 
+        <!-- Video Section -->
+        <section class="section video-section" id="video">
+            <div class="anime-reveal">
+                <div class="ornament">&#10022;</div>
+                <h2 class="section-title">Un Adelanto Especial</h2>
+                <p class="video-subtitle">Revive los momentos más mágicos</p>
+                <div class="video-wrapper">
+                    <div class="video-frame">
+                        <div class="video-corner tl"></div>
+                        <div class="video-corner tr"></div>
+                        <div class="video-corner bl"></div>
+                        <div class="video-corner br"></div>
+                        <div id="ytPlayer"></div>
+                    </div>
+                </div>
+                <div class="ornament" style="margin-top:2rem;">&#10022;</div>
+            </div>
+        </section>
+
         <!-- Dress Code -->
         <section class="section dresscode" id="dresscode">
             <div class="anime-reveal">
@@ -466,6 +485,20 @@
         if(btn)btn.textContent='Ver mi Invitacion';
     }).catch(function(){});
 })();
+</script>
+<script>
+// YouTube IFrame API – max quality
+var tag=document.createElement('script');
+tag.src='https://www.youtube.com/iframe_api';
+document.head.appendChild(tag);
+function onYouTubeIframeAPIReady(){
+    new YT.Player('ytPlayer',{
+        videoId:'MFHeO4HNzeE',
+        playerVars:{rel:0,modestbranding:1,playsinline:1,cc_load_policy:0,
+                    vq:'hd1080',origin:location.origin},
+        events:{onReady:function(e){e.target.setPlaybackQuality('hd1080');}}
+    });
+}
 </script>
 </body>
 </html>
